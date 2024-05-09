@@ -6,7 +6,17 @@ import {
   searchBalloons,
 } from "../shared/lib/balloonGame";
 
-const useBalloonGrid = ({ size: { columns, rows } }: { size: GridSize }) => {
+type useBalloonGridParameters = {
+  size: GridSize;
+  onLose: () => void;
+  onWin: () => void;
+};
+
+const useBalloonGrid = ({
+  onLose,
+  onWin,
+  size: { columns, rows },
+}: useBalloonGridParameters) => {
   const [balloons, setBalloons] = useState<BalloonCellInfo[]>(
     placeBalloons({ columns, rows })
   );
@@ -14,10 +24,11 @@ const useBalloonGrid = ({ size: { columns, rows } }: { size: GridSize }) => {
     searchBalloons(balloons)
   );
 
-  const generateBalloons = useCallback(
-    () => setBalloons(placeBalloons({ columns, rows })),
-    [columns, rows]
-  );
+  const generateBalloons = useCallback(() => {
+    const newBalloons = placeBalloons({ columns, rows });
+    setBalloons(newBalloons);
+    setBalloonGroups(searchBalloons(newBalloons));
+  }, [columns, rows]);
 
   const popBalloons = useCallback(
     (balloonGroup: number[]) => setBalloons(balloonPopper(balloonGroup)),
@@ -28,20 +39,18 @@ const useBalloonGrid = ({ size: { columns, rows } }: { size: GridSize }) => {
     (balloonGroup: number[], newBalloonGroups: number[][]) => {
       popBalloons(balloonGroup);
       setBalloonGroups(newBalloonGroups);
+      if (newBalloonGroups.length === 0) return onWin();
     },
-    [popBalloons]
+    [popBalloons, onWin]
   );
-
-  // TODO : 실패 시 처리 로직 구현
-  const onCheckFailed = useCallback(() => {}, []);
 
   const checkBalloon = useCallback(
     (balloonIndex: number) =>
       balloonChecker({
-        onFailed: onCheckFailed,
+        onFailed: onLose,
         onSuccess: onBalloonCheckSuccess,
       })(balloonGroups, balloonIndex),
-    [balloonGroups, onBalloonCheckSuccess, onCheckFailed]
+    [balloonGroups, onBalloonCheckSuccess, onLose]
   );
 
   return {
