@@ -51,6 +51,9 @@ export default function Button({
         &:hover {
           opacity: 0.8;
         }
+        &[hidden] {
+          visibility: hidden;
+        }
       `}
       {...props}
     >

@@ -8,7 +8,7 @@ interface BalloonGridCellProps {
 }
 
 export default function BalloonGridCell({
-  cell: { coordinates, isBalloon = false },
+  cell: { coordinates, isBalloon = false, isPopped = false },
   onBalloonClick,
 }: BalloonGridCellProps) {
   return (
@@ -18,6 +18,7 @@ export default function BalloonGridCell({
           variant="transparent"
           size="stretch"
           onClick={() => onBalloonClick(coordinates)}
+          hidden={isPopped}
         >
           <BalloonImg />
         </Button>
