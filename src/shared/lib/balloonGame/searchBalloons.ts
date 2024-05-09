@@ -2,7 +2,7 @@ import { cellMover, coordinateToIndexConverter } from "../../utils/gridUtils";
 
 const directions = ["up", "down", "left", "right"] as const;
 
-export const searchBalloons = (gridCells: BalloonCellInfo[]) => {
+const searchBalloons = (gridCells: BalloonCellInfo[]) => {
   let visited: number[] = [];
 
   const visitCell = (index: number) => {
@@ -37,3 +37,5 @@ export const searchBalloons = (gridCells: BalloonCellInfo[]) => {
     .filter((result) => result != null)
     .sort((a, b) => b.length - a.length);
 };
+
+export default searchBalloons;
