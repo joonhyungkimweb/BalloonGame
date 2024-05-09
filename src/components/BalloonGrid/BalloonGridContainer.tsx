@@ -3,20 +3,21 @@ import BalloonGridCell from "./BalloonGridCell";
 
 type BalloonGridContainerProps = GridSize & {
   balloons: BalloonCellInfo[];
+  onBalloonClick: (index: number) => void;
 };
 
 function BalloonGridContainer({
   rows,
   columns,
   balloons,
+  onBalloonClick,
 }: BalloonGridContainerProps) {
   return (
     <GridContainer rows={rows} columns={columns}>
-      {balloons.map((balloon) => (
+      {balloons.map((balloon, index) => (
         <BalloonGridCell
           cell={balloon}
-          // * TODO : 클릭 이벤트 핸들러 구현
-          onBalloonClick={() => void 0}
+          onClick={() => onBalloonClick(index)}
           key={`grid-cell-${balloon.coordinates.row}-${balloon.coordinates.column}`}
         />
       ))}

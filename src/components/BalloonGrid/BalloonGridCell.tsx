@@ -4,12 +4,12 @@ import GridCell from "../base/GridCell";
 
 interface BalloonGridCellProps {
   cell: BalloonCellInfo;
-  onBalloonClick: (cordinates: Coordinates) => void;
+  onClick: () => void;
 }
 
 export default function BalloonGridCell({
   cell: { coordinates, isBalloon = false, isPopped = false },
-  onBalloonClick,
+  onClick,
 }: BalloonGridCellProps) {
   return (
     <GridCell coordinates={coordinates}>
@@ -17,7 +17,7 @@ export default function BalloonGridCell({
         <Button
           variant="transparent"
           size="stretch"
-          onClick={() => onBalloonClick(coordinates)}
+          onClick={onClick}
           hidden={isPopped}
         >
           <BalloonImg />
