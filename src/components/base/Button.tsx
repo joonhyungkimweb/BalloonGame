@@ -20,6 +20,12 @@ const buttonSizes = {
     width: 5rem;
     height: 2rem;
   `,
+  large: css`
+    padding: 1rem 2rem;
+    width: 10rem;
+    height: 4rem;
+    font-size: 1.5rem;
+  `,
   stretch: css`
     width: 100%;
     height: 100%;
