@@ -9,13 +9,13 @@ interface GridCellProps
 
 export default function GridCell({
   children,
-  coordinates: { x, y },
+  coordinates: { row, column },
   ...props
 }: GridCellProps) {
   return (
     <li
       css={css`
-        grid-area: ${x} / ${y};
+        grid-area: ${row} / ${column};
         border-right: 1px solid black;
         border-bottom: 1px solid black;
         overflow: hidden;

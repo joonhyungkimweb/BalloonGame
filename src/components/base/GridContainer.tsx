@@ -2,11 +2,8 @@
 import { css } from "@emotion/react";
 import { HTMLAttributes, PropsWithChildren } from "react";
 
-interface GridContainerProps
-  extends PropsWithChildren<HTMLAttributes<HTMLUListElement>> {
-  rows: number;
-  columns: number;
-}
+type GridContainerProps = PropsWithChildren<HTMLAttributes<HTMLUListElement>> &
+  GridSize;
 
 export default function GridContainer({
   children,
