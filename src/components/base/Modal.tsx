@@ -2,7 +2,7 @@
 import { css } from "@emotion/react";
 import { PropsWithChildren } from "react";
 
-export default function Modal({ children }: PropsWithChildren) {
+function ModalBackground({ children }: PropsWithChildren) {
   return (
     <div
       css={css`
@@ -20,5 +20,27 @@ export default function Modal({ children }: PropsWithChildren) {
     >
       {children}
     </div>
+  );
+}
+
+function ModalContent({ children }: PropsWithChildren) {
+  return (
+    <div
+      css={css`
+        background-color: white;
+        padding: 2rem 4rem;
+        border-radius: 0.5rem;
+      `}
+    >
+      {children}
+    </div>
+  );
+}
+
+export default function Modal({ children }: PropsWithChildren) {
+  return (
+    <ModalBackground>
+      <ModalContent>{children}</ModalContent>
+    </ModalBackground>
   );
 }

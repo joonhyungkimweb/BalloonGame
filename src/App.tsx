@@ -39,7 +39,7 @@ function App() {
         padding: 1rem;
       `}
     >
-      {isOpen && <GameFinishedModal reason={reason} onClick={onModalClick} />}
+      <GameFinishedModal isOpen={isOpen} reason={reason} onClick={onModalClick} />
       <BalloonGridContainer
         columns={columns}
         rows={rows}
