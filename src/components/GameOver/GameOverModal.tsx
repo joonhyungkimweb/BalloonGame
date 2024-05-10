@@ -2,7 +2,7 @@ import Button from "../base/Button";
 import Message from "../base/Message";
 import Modal from "../base/Modal";
 
-type GameFinishedModalProps = {
+type GameOverModalProps = {
   isOpen: boolean;
   reason: "win" | "lose";
   onClick: () => void;
@@ -13,11 +13,11 @@ const messages = {
   lose: "패배",
 };
 
-export default function GameFinishedModal({
-  isOpen,
+export default function GameOverModal({
   reason,
+  isOpen,
   onClick,
-}: GameFinishedModalProps) {
+}: GameOverModalProps) {
   if (!isOpen) return null;
   return (
     <Modal>

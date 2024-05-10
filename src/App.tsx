@@ -2,8 +2,8 @@
 import { css } from "@emotion/react";
 import BalloonGridContainer from "./components/BalloonGrid/BalloonGridContainer";
 import useBalloonGrid from "./hooks/useBalloonGrid";
-import useGameFinishedModalState from "./hooks/useGameFinishedModalState";
-import GameFinishedModal from "./components/GameFinished/GameFinishedModal";
+import GameOverModal from "./components/GameOver/GameOverModal";
+import useGameOverModalState from "./hooks/useGameOverModalState";
 
 const DEFAULT_GRID_SIZE = {
   columns: 6,
@@ -11,7 +11,7 @@ const DEFAULT_GRID_SIZE = {
 };
 
 function App() {
-  const { reason, isOpen, close, open } = useGameFinishedModalState();
+  const { reason, isOpen, close, open } = useGameOverModalState();
   const onLose = () => open("lose");
   const onWin = () => open("win");
 
@@ -39,7 +39,7 @@ function App() {
         padding: 1rem;
       `}
     >
-      <GameFinishedModal isOpen={isOpen} reason={reason} onClick={onModalClick} />
+      <GameOverModal isOpen={isOpen} reason={reason} onClick={onModalClick} />
       <BalloonGridContainer
         columns={columns}
         rows={rows}
