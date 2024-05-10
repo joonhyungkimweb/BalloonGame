@@ -34,7 +34,7 @@ const searchBalloons = (gridCells: BalloonCellInfo[]) => {
       if (visited.includes(currentIndex) || !isBalloon) return;
       return search(currentIndex);
     })
-    .filter((result) => result != null)
+    .filter((result): result is number[] => result != null)
     .sort((a, b) => b.length - a.length);
 };
 
