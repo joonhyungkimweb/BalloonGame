@@ -1,9 +1,8 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import BalloonGridContainer from "./components/BalloonGrid/BalloonGridContainer";
 import useBalloonGrid from "./hooks/useBalloonGrid";
 import GameOverModal from "./components/GameOver/GameOverModal";
 import useGameOverModalAtom from "./atoms/useGameOverModalAtom";
+import AppMain from "./components/Layout/AppMain";
 
 const DEFAULT_GRID_SIZE = {
   columns: 6,
@@ -32,13 +31,7 @@ function App() {
   };
 
   return (
-    <main
-      css={css`
-        width: 100%;
-        height: 100%;
-        padding: 1rem;
-      `}
-    >
+    <AppMain>
       <GameOverModal onClick={onModalClick} />
       <BalloonGridContainer
         columns={columns}
@@ -46,7 +39,7 @@ function App() {
         balloons={balloons}
         onBalloonClick={onBalloonClick}
       />
-    </main>
+    </AppMain>
   );
 }
 
