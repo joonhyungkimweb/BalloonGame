@@ -2,27 +2,31 @@
 import { useCallback } from "react";
 import useGameOverModalAtom from "../../atoms/useGameOverModalAtom";
 import useGridSizeAtom from "../../atoms/useGridSizeAtom";
-import useBalloonGrid from "../../hooks/useBalloonGrid";
 import { css } from "@emotion/react";
 import GameStartModal from "../GameStart/GameStart";
 import GameOverModal from "../GameOver/GameOverModal";
 import BalloonGridContainer from "../BalloonGrid/BalloonGridContainer";
+import useBalloonAtom from "../../atoms/useBalloonAtom";
 
 export default function GameSection() {
   const { isResizing, requestResizing } = useGridSizeAtom();
   const { open, close } = useGameOverModalAtom();
-  const onLose = () => open("lose");
-  const onWin = () => open("win");
 
-  const { balloons, onBalloonClick, generateBalloons } = useBalloonGrid({
-    onLose,
-    onWin,
-  });
+  const { generateBalloons, checkBalloon } = useBalloonAtom();
 
   const onRestart = useCallback(() => {
     requestResizing();
     close();
   }, [requestResizing, close]);
+
+  const onBalloonClick = useCallback(
+    (index: number) => {
+      const result = checkBalloon(index);
+      if (result == null) return;
+      open(result);
+    },
+    [open, checkBalloon]
+  );
   return (
     <section
       css={css`
@@ -34,10 +38,7 @@ export default function GameSection() {
       ) : (
         <>
           <GameOverModal onClick={onRestart} />
-          <BalloonGridContainer
-            balloons={balloons}
-            onBalloonClick={onBalloonClick}
-          />
+          <BalloonGridContainer onBalloonClick={onBalloonClick} />
         </>
       )}
     </section>
