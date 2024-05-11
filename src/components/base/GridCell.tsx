@@ -16,8 +16,8 @@ export default function GridCell({
     <li
       css={css`
         grid-area: ${row} / ${column};
-        border-right: 1px solid black;
-        border-bottom: 1px solid black;
+        border-right: 1px solid var(--border-grid);
+        border-bottom: 1px solid var(--border-grid);
         overflow: hidden;
       `}
       {...props}

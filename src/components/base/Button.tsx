@@ -1,16 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
-import { colors } from "../../styles/colors";
 
 const buttonVariants = {
   primary: css`
-    background-color: ${colors.primary};
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-text-on-primary);
   `,
   transparent: css`
     background-color: transparent;
-    color: ${colors.primary};
+    color: var(--color-primary);
   `,
 };
 

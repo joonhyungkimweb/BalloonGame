@@ -2,7 +2,6 @@
 
 import { css } from "@emotion/react";
 import { InputHTMLAttributes, PropsWithChildren } from "react";
-import { colors } from "../../styles/colors";
 
 const inputSizes = {
   medium: css`
@@ -20,7 +19,9 @@ export default function Input({ inputSize = "medium", ...props }: InputProps) {
     <input
       css={css`
         ${inputSizes[inputSize]}
-        border: 1px solid ${colors.gray};
+        color: var(--color-text-default);
+        background-color: var(--background-sub);
+        border: 1px solid var(--color-gray);
         border-radius: 0.25rem;
       `}
       {...props}

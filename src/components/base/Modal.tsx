@@ -48,6 +48,7 @@ function ModalContent({ size = "medium", children }: ModalContentProps) {
         padding: 1.5rem;
         border-radius: 0.5rem;
         text-align: center;
+        background-color: var(--background-sub);
       `}
     >
       {children}

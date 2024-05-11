@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { colors } from "../../styles/colors";
 
 const messageSizes = {
   small: css`
@@ -16,10 +15,10 @@ const messageSizes = {
 
 const messageTypes = {
   message: css`
-    color: black;
+    color: var(--color-text-default);
   `,
   error: css`
-    color: ${colors.error};
+    color: var(--color-error);
   `,
 };
 

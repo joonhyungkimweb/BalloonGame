@@ -21,8 +21,8 @@ export default function GridContainer({
         margin: 0;
         padding: 0;
         list-style: none;
-        border-top: 1px solid black;
-        border-left: 1px solid black;
+        border-top: 1px solid var(--border-grid);
+        border-left: 1px solid var(--border-grid);
       `}
       {...props}
     >
