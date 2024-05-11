@@ -22,3 +22,11 @@ export const cellMover = (cells: BalloonCellInfo[]) => {
       row: row + directions[direction].row,
     });
 };
+
+export const sizeChecker =
+  ({ minSize, maxSize }: { minSize: number; maxSize: number }) =>
+  ({ columns, rows }: GridSize) =>
+    columns >= minSize &&
+    columns <= maxSize &&
+    rows >= minSize &&
+    rows <= maxSize;
