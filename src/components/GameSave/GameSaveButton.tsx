@@ -3,7 +3,7 @@ import useGameSaveModalAtom from "../../atoms/useGameSaveModalAtom";
 import useGridSizeAtom from "../../atoms/useGridSizeAtom";
 import { saveGame } from "../../shared/lib/balloonGame";
 import { copyToClipboard } from "../../shared/utils/clipboardUtils";
-import Button from "../base/Button";
+import Button from "../@base/Button";
 
 export default function GameSaveButton() {
   const { open } = useGameSaveModalAtom();

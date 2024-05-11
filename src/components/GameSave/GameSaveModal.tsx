@@ -1,7 +1,7 @@
 import useGameSaveModalAtom from "../../atoms/useGameSaveModalAtom";
-import Button from "../base/Button";
-import Message from "../base/Message";
-import Modal from "../base/Modal";
+import Button from "../@base/Button";
+import Message from "../@base/Message";
+import Modal from "../@base/Modal";
 import useGridSizeAtom from "../../atoms/useGridSizeAtom";
 
 export default function GameSaveModal() {

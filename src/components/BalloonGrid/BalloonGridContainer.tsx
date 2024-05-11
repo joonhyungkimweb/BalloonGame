@@ -1,6 +1,6 @@
 import useBalloonGridAtom from "../../atoms/useBalloonAtom";
 import useGridSizeAtom from "../../atoms/useGridSizeAtom";
-import GridContainer from "../base/GridContainer";
+import GridContainer from "../@base/GridContainer";
 import BalloonGridCell from "./BalloonGridCell";
 
 type BalloonGridContainerProps = {

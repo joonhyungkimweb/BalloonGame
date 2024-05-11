@@ -1,7 +1,7 @@
 import useGameOverModalAtom from "../../atoms/useGameOverModalAtom";
-import Button from "../base/Button";
-import Message from "../base/Message";
-import Modal from "../base/Modal";
+import Button from "../@base/Button";
+import Message from "../@base/Message";
+import Modal from "../@base/Modal";
 
 type GameOverModalProps = {
   onClick: () => void;

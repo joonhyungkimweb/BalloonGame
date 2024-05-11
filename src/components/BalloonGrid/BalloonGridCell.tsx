@@ -1,6 +1,6 @@
-import BalloonImg from "../base/BalloonImg";
-import Button from "../base/Button";
-import GridCell from "../base/GridCell";
+import BalloonImg from "../@base/BalloonImg";
+import Button from "../@base/Button";
+import GridCell from "../@base/GridCell";
 
 interface BalloonGridCellProps {
   cell: BalloonCellInfo;

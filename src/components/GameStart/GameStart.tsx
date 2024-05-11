@@ -1,8 +1,8 @@
 import useGridSizeAtom from "../../atoms/useGridSizeAtom";
 import { extractInputValueFromForm } from "../../shared/utils/formUtils";
 import { parseNumericToNumber } from "../../shared/utils/stringUtils";
-import InputForm, { type InputConfig } from "../base/InputForm";
-import Modal from "../base/Modal";
+import InputForm, { type InputConfig } from "../@base/InputForm";
+import Modal from "../@base/Modal";
 
 type GameStartModalProps = {
   onResize: (gridSize: GridSize) => void;
