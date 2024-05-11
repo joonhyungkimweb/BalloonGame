@@ -1,14 +1,15 @@
 import { generateRandomArray } from "../../utils/arrayUtils";
+import { indexToCoordinates } from "../../utils/gridUtils";
 
 const BALLOON_RATIO = 0.4;
 
 const balloonCellMapper =
   (columns: number) =>
   (isBalloon: boolean, index: number): BalloonCellInfo => ({
-    coordinates: {
-      row: Math.floor(index / columns) + 1,
-      column: (index % columns) + 1,
-    },
+    coordinates: indexToCoordinates({
+      columnSize: columns,
+      index,
+    }),
     isBalloon,
   });
 

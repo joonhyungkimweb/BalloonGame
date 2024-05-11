@@ -30,3 +30,14 @@ export const sizeChecker =
     columns <= maxSize &&
     rows >= minSize &&
     rows <= maxSize;
+
+export const indexToCoordinates = ({
+  columnSize,
+  index,
+}: {
+  index: number;
+  columnSize: number;
+}) => ({
+  row: Math.floor(index / columnSize) + 1,
+  column: (index % columnSize) + 1,
+});
