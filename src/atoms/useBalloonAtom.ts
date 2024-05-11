@@ -9,13 +9,13 @@ import { atom, useAtomValue, useSetAtom } from "jotai";
 const balloonsAtom = atom<BalloonCellInfo[]>([]);
 const balloonGroupsAtom = atom<number[][]>([]);
 
-const generateBalloonsAtom = atom(
-  null,
-  (_, set, { columns, rows }: GridSize) => {
-    const newBalloons = placeBalloons({ columns, rows });
-    set(balloonsAtom, newBalloons);
-    set(balloonGroupsAtom, searchBalloons(newBalloons));
-  }
+const setBalloonsAtom = atom(null, (_, set, newBalloons: BalloonCellInfo[]) => {
+  set(balloonsAtom, newBalloons);
+  set(balloonGroupsAtom, searchBalloons(newBalloons));
+});
+
+const generateBalloonsAtom = atom(null, (_, set, { columns, rows }: GridSize) =>
+  set(setBalloonsAtom, placeBalloons({ columns, rows }))
 );
 
 const checkBalloonAtom = atom(null, (get, set, balloonIndex: number) => {
@@ -42,6 +42,7 @@ const checkBalloonAtom = atom(null, (get, set, balloonIndex: number) => {
 
 const useBalloonAtom = () => ({
   balloons: useAtomValue(balloonsAtom),
+  setBalloons: useSetAtom(setBalloonsAtom),
   generateBalloons: useSetAtom(generateBalloonsAtom),
   checkBalloon: useSetAtom(checkBalloonAtom),
 });
