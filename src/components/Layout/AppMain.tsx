@@ -3,11 +3,15 @@ import { css } from "@emotion/react";
 import { PropsWithChildren } from "react";
 import { variables } from "../../styles/variables";
 
-export default function AppMain({ children }: PropsWithChildren) {
+type AppMainProps = PropsWithChildren<{
+  theme?: keyof typeof variables;
+}>;
+
+export default function AppMain({ theme = "light", children }: AppMainProps) {
   return (
     <main
       css={css`
-        ${variables}
+        ${variables[theme]}
         width: 100%;
         height: 100%;
         padding: 1rem;
