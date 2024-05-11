@@ -12,7 +12,7 @@ export default function GameSaveButton() {
 
   const onClick = async () => {
     const savedGame = saveGame(gridSize, balloons);
-    await copyToClipboard(`${location.href}?saved=${savedGame}`);
+    await copyToClipboard(`${location.origin}?saved=${savedGame}`);
     open();
   };
 
