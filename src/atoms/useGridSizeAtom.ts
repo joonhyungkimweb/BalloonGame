@@ -13,7 +13,7 @@ const checkSize = sizeChecker({
 });
 
 const gridSizeAtom = atom<GridSize>(DEFAULT_SIZE);
-const isResizingAtom = atom<boolean>(true);
+const isResizingAtom = atom<boolean>(false);
 const requestResizingAtom = atom(null, (_, set) => set(isResizingAtom, true));
 const resizeAtom = atom(null, (_, set, size: GridSize) => {
   if (!checkSize(size)) throw new InvalidGridSizeError(size);
