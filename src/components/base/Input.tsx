@@ -20,7 +20,7 @@ export default function Input({ inputSize = "medium", ...props }: InputProps) {
     <input
       css={css`
         ${inputSizes[inputSize]}
-        border : 1px solid ${colors.gray};
+        border: 1px solid ${colors.gray};
         border-radius: 0.25rem;
       `}
       {...props}

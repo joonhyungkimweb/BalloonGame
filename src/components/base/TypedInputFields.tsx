@@ -15,6 +15,7 @@ function InputField({ type, name, children, initialValue }: InputFieldProps) {
   return (
     <div
       css={css`
+        width: 100%;
         display: flex;
         flex-direction: column;
         & > label {
