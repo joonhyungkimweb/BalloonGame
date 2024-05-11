@@ -17,6 +17,9 @@ export default function AppMain({ children }: PropsWithChildren) {
         background-color: var(--background-main);
         color: var(--color-text-default);
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
       `}
     >
       {children}
