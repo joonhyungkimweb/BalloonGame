@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { HTMLAttributes, PropsWithChildren } from "react";
+import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 import { colors } from "../../styles/colors";
 
 const buttonVariants = {
@@ -35,7 +35,7 @@ const buttonSizes = {
 };
 
 interface ButtonProps
-  extends PropsWithChildren<HTMLAttributes<HTMLButtonElement>> {
+  extends PropsWithChildren<ButtonHTMLAttributes<HTMLButtonElement>> {
   variant?: keyof typeof buttonVariants;
   size?: keyof typeof buttonSizes;
 }
