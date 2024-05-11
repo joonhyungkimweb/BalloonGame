@@ -12,7 +12,7 @@ export default function GameOverModal({ onClick }: GameOverModalProps) {
   if (!isOpen) return null;
   return (
     <Modal>
-      <Message message={message} size="large" />
+      <Message size="large">{message}</Message>
       <Button onClick={onClick} size="large">
         다시시작
       </Button>
