@@ -14,15 +14,18 @@ const buttonVariants = {
 };
 
 const buttonSizes = {
+  small: css`
+    padding: 0.25rem 0.5rem;
+    min-width: 3rem;
+    font-size: 0.8rem;
+  `,
   medium: css`
     padding: 0.5rem 1rem;
-    width: 5rem;
-    height: 2rem;
+    min-width: 5rem;
   `,
   large: css`
     padding: 1rem 2rem;
-    width: 10rem;
-    height: 4rem;
+    min-width: 10rem;
     font-size: 1.5rem;
   `,
   stretch: css`
