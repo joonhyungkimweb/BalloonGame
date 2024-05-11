@@ -2,6 +2,9 @@
 import { css } from "@emotion/react";
 import Button from "./Button";
 import { NumberField, TextField } from "./TypedInputFields";
+import Message from "./Message";
+import { useState } from "react";
+import { ErrorWithPresentational } from "../../shared/constants/errors";
 
 const InputComponents = {
   number: NumberField,
@@ -18,6 +21,7 @@ export type InputConfig = {
 type InputFormProps = {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   inputConfigs: InputConfig[];
+  errorText?: string;
   buttonText?: string;
 };
 
@@ -26,6 +30,20 @@ export default function InputForm({
   onSubmit,
   buttonText = "확인",
 }: InputFormProps) {
+  const [errorMessage, setErrorMessage] = useState<string>();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      setErrorMessage(undefined);
+      onSubmit(e);
+    } catch (err) {
+      if (err instanceof ErrorWithPresentational)
+        return setErrorMessage(err.presentational);
+
+      setErrorMessage("오류가 발생했습니다.");
+    }
+  };
+
   return (
     <form
       css={css`
@@ -35,7 +53,7 @@ export default function InputForm({
         gap: 1rem;
         width: 100%;
       `}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
       {inputConfigs.map(({ name, type, title, defaultValue }) => {
         const InputComponent = InputComponents[type];
@@ -46,6 +64,11 @@ export default function InputForm({
         );
       })}
       <Button type="submit">{buttonText}</Button>
+      {errorMessage && (
+        <Message size="small" type="error">
+          {errorMessage}
+        </Message>
+      )}
     </form>
   );
 }
