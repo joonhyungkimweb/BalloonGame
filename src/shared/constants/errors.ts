@@ -20,3 +20,10 @@ export class InvalidSaveDataError extends ErrorWithPresentational {
     super("Invalid save data", "저장된 데이터가 올바르지 않습니다.");
   }
 }
+
+export class NoSavedDataError extends ErrorWithPresentational {
+  name = "NoSavedDataError";
+  constructor() {
+    super("No saved data", "저장된 데이터가 없습니다.");
+  }
+}
