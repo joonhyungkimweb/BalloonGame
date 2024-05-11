@@ -1,13 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { PropsWithChildren } from "react";
 import { variables } from "../../styles/variables";
+import useThemeAtom from "../../atoms/useThemeAtom";
+import { PropsWithChildren } from "react";
 
-type AppMainProps = PropsWithChildren<{
-  theme?: keyof typeof variables;
-}>;
+export default function AppMain({ children }: PropsWithChildren) {
+  const { theme } = useThemeAtom();
 
-export default function AppMain({ theme = "light", children }: AppMainProps) {
   return (
     <main
       css={css`
@@ -17,6 +16,7 @@ export default function AppMain({ theme = "light", children }: AppMainProps) {
         padding: 1rem;
         background-color: var(--background-main);
         color: var(--color-text-default);
+        overflow: hidden;
       `}
     >
       {children}
