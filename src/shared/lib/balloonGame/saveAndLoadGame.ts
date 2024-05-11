@@ -15,7 +15,7 @@ export const saveGame = (size: GridSize, balloons: BalloonCellInfo[]) =>
     .join("")}`;
 
 const extractNumber = (source: string | string[], regex: RegExp) => {
-  const matchedString = searchString(source, regex)?.match(/\d/);
+  const matchedString = searchString(source, regex)?.match(/\d+/);
 
   if (matchedString == null) throw new InvalidSaveDataError();
 
