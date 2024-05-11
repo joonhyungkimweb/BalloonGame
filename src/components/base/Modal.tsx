@@ -23,13 +23,31 @@ function ModalBackground({ children }: PropsWithChildren) {
   );
 }
 
-function ModalContent({ children }: PropsWithChildren) {
+const contentSizes = {
+  small: css`
+    width: 16rem;
+  `,
+  medium: css`
+    width: 24rem;
+  `,
+  large: css`
+    width: 32rem;
+  `,
+};
+
+type ModalContentProps = PropsWithChildren<{
+  size?: keyof typeof contentSizes;
+}>;
+
+function ModalContent({ size = "medium", children }: ModalContentProps) {
   return (
     <div
       css={css`
+        ${contentSizes[size]}
         background-color: white;
-        padding: 2rem 4rem;
+        padding: 1.5rem;
         border-radius: 0.5rem;
+        text-align: center;
       `}
     >
       {children}
@@ -37,10 +55,10 @@ function ModalContent({ children }: PropsWithChildren) {
   );
 }
 
-export default function Modal({ children }: PropsWithChildren) {
+export default function Modal({ size, children }: ModalContentProps) {
   return (
     <ModalBackground>
-      <ModalContent>{children}</ModalContent>
+      <ModalContent size={size}>{children}</ModalContent>
     </ModalBackground>
   );
 }
