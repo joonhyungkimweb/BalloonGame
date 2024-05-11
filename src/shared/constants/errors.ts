@@ -13,3 +13,10 @@ export class InvalidGridSizeError extends ErrorWithPresentational {
     );
   }
 }
+
+export class InvalidSaveDataError extends ErrorWithPresentational {
+  name = "InvalidSaveDataError";
+  constructor() {
+    super("Invalid save data", "저장된 데이터가 올바르지 않습니다.");
+  }
+}
