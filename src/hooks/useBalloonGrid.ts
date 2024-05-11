@@ -7,28 +7,19 @@ import {
 } from "../shared/lib/balloonGame";
 
 type useBalloonGridParameters = {
-  size: GridSize;
   onLose: () => void;
   onWin: () => void;
 };
 
-const useBalloonGrid = ({
-  onLose,
-  onWin,
-  size: { columns, rows },
-}: useBalloonGridParameters) => {
-  const [balloons, setBalloons] = useState<BalloonCellInfo[]>(
-    placeBalloons({ columns, rows })
-  );
-  const [balloonGroups, setBalloonGroups] = useState<number[][]>(
-    searchBalloons(balloons)
-  );
+const useBalloonGrid = ({ onLose, onWin }: useBalloonGridParameters) => {
+  const [balloons, setBalloons] = useState<BalloonCellInfo[]>([]);
+  const [balloonGroups, setBalloonGroups] = useState<number[][]>([]);
 
-  const generateBalloons = useCallback(() => {
+  const generateBalloons = useCallback(({ columns, rows }: GridSize) => {
     const newBalloons = placeBalloons({ columns, rows });
     setBalloons(newBalloons);
     setBalloonGroups(searchBalloons(newBalloons));
-  }, [columns, rows]);
+  }, []);
 
   const popBalloons = useCallback(
     (balloonGroup: number[]) => setBalloons(balloonPopper(balloonGroup)),
@@ -56,7 +47,6 @@ const useBalloonGrid = ({
   return {
     generateBalloons,
     balloons,
-    gridSize: { columns, rows },
     onBalloonClick: checkBalloon,
   };
 };

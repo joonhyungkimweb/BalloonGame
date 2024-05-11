@@ -1,17 +1,19 @@
+import useGridSizeAtom from "../../atoms/useGridSizeAtom";
 import GridContainer from "../base/GridContainer";
 import BalloonGridCell from "./BalloonGridCell";
 
-type BalloonGridContainerProps = GridSize & {
+type BalloonGridContainerProps = {
   balloons: BalloonCellInfo[];
   onBalloonClick: (index: number) => void;
 };
 
 function BalloonGridContainer({
-  rows,
-  columns,
   balloons,
   onBalloonClick,
 }: BalloonGridContainerProps) {
+  const {
+    gridSize: { columns, rows },
+  } = useGridSizeAtom();
   return (
     <GridContainer rows={rows} columns={columns}>
       {balloons.map((balloon, index) => (

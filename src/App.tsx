@@ -3,42 +3,39 @@ import useBalloonGrid from "./hooks/useBalloonGrid";
 import GameOverModal from "./components/GameOver/GameOverModal";
 import useGameOverModalAtom from "./atoms/useGameOverModalAtom";
 import AppMain from "./components/Layout/AppMain";
-
-const DEFAULT_GRID_SIZE = {
-  columns: 6,
-  rows: 6,
-};
+import GameStart from "./components/GameStart/GameStart";
+import { useCallback } from "react";
+import useGridSizeAtom from "./atoms/useGridSizeAtom";
 
 function App() {
+  const { isResizing, requestResizing } = useGridSizeAtom();
   const { open, close } = useGameOverModalAtom();
   const onLose = () => open("lose");
   const onWin = () => open("win");
 
-  const {
-    balloons,
-    gridSize: { columns, rows },
-    onBalloonClick,
-    generateBalloons,
-  } = useBalloonGrid({
-    size: DEFAULT_GRID_SIZE,
+  const { balloons, onBalloonClick, generateBalloons } = useBalloonGrid({
     onLose,
     onWin,
   });
 
-  const onModalClick = () => {
-    generateBalloons();
+  const onRestart = useCallback(() => {
+    requestResizing();
     close();
-  };
+  }, [requestResizing, close]);
 
   return (
     <AppMain>
-      <GameOverModal onClick={onModalClick} />
-      <BalloonGridContainer
-        columns={columns}
-        rows={rows}
-        balloons={balloons}
-        onBalloonClick={onBalloonClick}
-      />
+      {isResizing ? (
+        <GameStart onResize={generateBalloons} />
+      ) : (
+        <>
+          <GameOverModal onClick={onRestart} />
+          <BalloonGridContainer
+            balloons={balloons}
+            onBalloonClick={onBalloonClick}
+          />
+        </>
+      )}
     </AppMain>
   );
 }
